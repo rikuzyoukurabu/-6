@@ -8,7 +8,8 @@ class User < ApplicationRecord
   
   has_many :books,dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+  has_many :book_comments,dependent: :destroy
+#   コメントとuserはn:1となるため
    def already_favorited?(book)
      self.favorites.exists?(book_id: book.id)
    end
