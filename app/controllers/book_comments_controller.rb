@@ -10,17 +10,17 @@ class BookCommentsController < ApplicationController
     @comment.book_id = @book.id
     @comment.user_id = current_user.id
     @comment.save
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
   def destroy
     if @book = Book.find(params[:book_id])
     comment = @book.book_comments.find(params[:id])
     comment.destroy
-    redirect_to request.referrer
+    # Ajax処理
     else
      book_comment_user != current_user
-     redirect_to book_path
+    # Ajax処理
     end
   end
 

@@ -1,0 +1,15 @@
+<!--いいね部分のテンプレート化-->
+
+          <% if current_user.already_favorited?(book) %>
+           <%= link_to book_favorites_path(book),method: :delete, remote: true do %>
+           <!--Ajax処理追加-->
+            <i class="fas fa-heart"></i>
+            <% end %>
+          <% else %>
+           <%= link_to book_favorites_path(book),method: :post, remote: true  do %>
+           <!--Ajax処理追加-->
+            <i class="far fa-heart"></i>
+            <% end %>
+          <% end %>
+          <%= book.favorites.count %>
+          
