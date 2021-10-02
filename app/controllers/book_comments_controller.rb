@@ -14,14 +14,10 @@ class BookCommentsController < ApplicationController
   end
 
   def destroy
-    if @book = Book.find(params[:book_id])
-    comment = @book.book_comments.find(params[:id])
-    comment.destroy
+    @book = Book.find(params[:book_id])
+    @book_comment = @book.book_comments.find(params[:id])
+    @book_comment.destroy
     # Ajax処理
-    else
-     book_comment_user != current_user
-    # Ajax処理
-    end
   end
 
   private

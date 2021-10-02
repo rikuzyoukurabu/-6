@@ -1,7 +1,9 @@
 class FavoritesController < ApplicationController
 
   def create
-  @favorite = current_user.favorites.create(book_id: params[:book_id])
+    @book = Book.find(params[:book_id])
+    @favorite = current_user.favorites.new(book_id: @book.id)
+    @favorite.save
   # <!--Ajax処理追加-->
   end
 

@@ -1,8 +1,19 @@
 <!--コメント作成機能-->
 
-
-        <%= form_with(model:[book, @book_comment], remote: true) do |f| %>
-        <!--Ajax処理-->
-          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+     <% book.book_comments.each do |book_comment| %>
+        <tr>
+        <td>
+          <p><%= link_to attachment_image_tag(book_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg"),user_path(book_comment.user) %><br></p>
+          <%= book_comment.user.name %>
+          <%= book_comment.comment %>
+        </td>
+          <td id="destroy_buttons<%= book_comment.id %>">
+            <% if book_comment.user == current_user %>
+          <p><%= link_to 'Delete', book_book_comment_path(book_comment.book, book_comment),class: "btn btn-danger", method: :delete, remote: true  %></p>
+          <!--引数を二つ使う。rails routesで確認-->
+          <!--Ajax処理実装-->
+         <% end %>
+          </td>
+      　</td>
+     </tr>
+     <% end %>
