@@ -14,7 +14,7 @@
     　　<th>body</th>
        </thead>
   <tbody>
-    <tr>
+    <tr id="book_<%= @book.id %>">
       <td>
        <%= link_to attachment_image_tag(@book.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg"),user_path(@user.id) %><br>
        <%= link_to @user.name,user_path(@user.id) %>
@@ -24,7 +24,7 @@
       <td id="favorite_buttons_<%= @book.id %>">
         <%= render 'favorites/favorite', book:@book %>
       </td>
-      <td>:コメント件数<%= @book.book_comments.count %></td>
+      <td class="comments-count">コメント数: <%= @book.book_comments.count %></td>
 
       <% if @book.user.id == current_user.id %>
          <td><%= link_to "Edit",edit_book_path(@book.id),class: "button is btn btn-success" %></td>
